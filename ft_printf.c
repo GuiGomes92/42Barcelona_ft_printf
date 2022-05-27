@@ -13,9 +13,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int ft_printf(const char *, ...)
+int ft_printf(const char *str, ...)
 {
 	va_list arg;
+	va_start(arg, str);
 	printf("%s\n", va_arg(arg, char *));
 	printf("%s\n", va_arg(arg, char *));
 	va_end(arg);
