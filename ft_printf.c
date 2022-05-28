@@ -6,11 +6,11 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/28 18:01:32 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:19:19 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprint.h"
+#include "libftprintf.h"
 
 static void ft_putchar(int c)
 {
@@ -32,6 +32,27 @@ static void ft_putstr(char *str)
 static int ft_putint(int i)
 {
 	ft_putnbr_fd(i, 1);
+	return (0);
+}
+
+static int ft_put_unsigned(unsigned int i)
+{
+	char c;
+
+	//if (i >= 0 && i <= 9)
+	//	write(1, &i, 1);
+	//	Put numbers less than 10;
+	if (i >= 10)
+	{
+		ft_putint(i / 10);
+		ft_putint(i % 10);
+	}
+	else
+	{
+		c = i + '0';
+		write(1, &c, 1);
+	}
+	return (0);
 }
 
 static int ft_check_type(va_list arg, char type)
@@ -44,6 +65,8 @@ static int ft_check_type(va_list arg, char type)
 		ft_putstr(va_arg(arg, char *));
 	else if (type == 'i' || type == 'd')
 		ft_putint(va_arg(arg, int));
+	else if (type == 'u')
+		ft_put_unsigned(va_arg(arg, unsigned int));
 	return (0);
 }
 
@@ -74,10 +97,12 @@ int main(void)
 	int	i = 23;
 	char c = 'B';
 	char *str = "Que tal?";
+	unsigned int j = 35;
 	ft_printf("Hello %c\n", c);
 	ft_printf("Hello %%\n", c);
 	ft_printf("Hello %s\n", str);
 	ft_printf("Hello, %i\n" , i);
+	ft_printf("Hello, %u\n", j);
 
 }
 /*
