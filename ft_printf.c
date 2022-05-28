@@ -6,13 +6,11 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/28 17:15:25 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:01:32 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
+#include "libftprint.h"
 
 static void ft_putchar(int c)
 {
@@ -33,29 +31,7 @@ static void ft_putstr(char *str)
 
 static int ft_putint(int i)
 {
-	char	c;
-
-	if (i == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-	}
-	else if (i < 0)
-	{
-		write(1, "-", 1);
-		i = -i;
-		ft_putint(i);
-	}
-	else if (i >= 10)
-	{
-		ft_putint(i / 10);
-		ft_putint(i % 10);
-	}
-	else
-	{
-		c = i + '0';
-		write(1, &c, 1);
-	}
-	return (0);
+	ft_putnbr_fd(i, 1);
 }
 
 static int ft_check_type(va_list arg, char type)
@@ -66,7 +42,7 @@ static int ft_check_type(va_list arg, char type)
 		ft_putchar('%');
 	else if (type == 's')
 		ft_putstr(va_arg(arg, char *));
-	else if (type == 'i')
+	else if (type == 'i' || type == 'd')
 		ft_putint(va_arg(arg, int));
 	return (0);
 }
@@ -106,7 +82,6 @@ int main(void)
 }
 /*
 • %p The void * pointer argument has to be printed in hexadecimal format.
-• %d Prints a decimal (base 10) number.
 • %u Prints an unsigned decimal (base 10) number.
 • %x Prints a number in hexadecimal (base 16) lowercase format.
 • %X Prints a number in hexadecimal (base 16) uppercase format.
