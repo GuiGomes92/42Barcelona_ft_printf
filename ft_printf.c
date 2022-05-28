@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/28 18:19:19 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:21:48 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int main(void)
 }
 /*
 • %p The void * pointer argument has to be printed in hexadecimal format.
-• %u Prints an unsigned decimal (base 10) number.
 • %x Prints a number in hexadecimal (base 16) lowercase format.
 • %X Prints a number in hexadecimal (base 16) uppercase format.
 */
