@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 16:18:14 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:33:01 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,52 +52,86 @@ static int ft_put_unsigned(unsigned int i)
 	return (0);
 }
 
-static void ft_put_nb(uintptr_t ptr)
+static int get_num_len(int num)
 {
-	uintptr_t temp;
-	while (ptr > 0)
+	int	len;
+	len = 0;
+
+	while (num > 0)
 	{
-		temp = ptr % 16;
-		if (temp <= 9)
-			ft_putchar_fd((temp + '0'), 1);
-		else
-			ft_putchar_fd((temp - 10 + 'a'), 1);
-		ptr = ptr / 16;
+		num = num / 16;
+		len++;
 	}
+	return (len);
+}
+
+static char	*ft_convert_hex(int num)
+{
+	int     mod;
+	int     j;
+	int		len;
+	char    *str;
+	const char  hex[] = "0123456789abcdef";
+
+	j = num;
+	len = get_num_len(num);
+	str = malloc(len + 1 * sizeof(char));
+	str[len] = '\0';
+	while (j > 0)
+	{   
+		len--;
+		mod = j % 16;
+		str[len] = hex[mod];
+		j = j / 16;
+	}
+	return (str);	
+}
+
+static int ft_convert_ptr(uintptr_t ptr)
+{
+	char    	*str;
+	int			len;
+	uintptr_t	num;
+	int			mod;
+	const char  hex[] = "0123456789abcdef";
+
+	num = ptr;
+	len = 0;
+	while (num > 0)
+	{   
+		num = num / 16;
+		len++;
+	}
+	str = malloc(len + 1 * sizeof(char));
+	str[len] = '\0';
+	num = ptr;
+	while (num > 0)
+	{
+		len--;
+		mod = num % 16;
+		str[len] = hex[mod];
+		num = num / 16;
+	}
+	ft_putstr_fd(str, 1);
+	return (len);
 }
 
 static int ft_put_ptr(unsigned long long ptr)
 {
 	write(1, "0x", 2);
-	ft_put_nb(ptr);	
+	ft_convert_ptr(ptr);	
 	return (0);
 }
 
 static int ft_put_int_hex(int i, char type)
 {
-	int		mod;
-	int		len;
 	int		j;
+	int		len;
 	char	*str;
-	const char	hex[] = "0123456789abcdef";
-		
-	j = i;
-	len = 0;
-	while (j > 0)
-	{
-		j = j / 16;
-		len++;
-	}
-	str = malloc(len + 1 * sizeof(char));
-	str[len] = '\0';
-	while (i > 0)
-	{
-		len--;
-		mod = i % 16;
-		str[len] = hex[mod];
-		i = i / 16;
-	}
-	j = 0; 
+	
+	j = 0;
+	len = get_num_len(i);
+	str = ft_convert_hex(i);
 	if (type == 'x')
 	{
 		while (str[j] != '\0')
@@ -161,26 +195,10 @@ int ft_printf(const char *str, ...)
 
 int main(void)
 {
-	/*
-	int		i = 23;
-	int		k = 40;
+	int	i = 128l;
 	void	*p;
+
 	p = &i;
-	char	c = 'B';
-	char	*str = "Que tal?";
-	unsigned int j = 35;
-	*/
-	int     num_hex = 1128;
-	/*
-	ft_printf("Char: %c\n", c);
-	ft_printf("Percentage: %%\n", c);
-	ft_printf("String: %s\n", str);
-	ft_printf("Integer: %i %i\n", i, k);
-	ft_printf("Unsigned Int: %u\n", j);
-	ft_printf("Ptr Hex: %p\n", p);
-	printf("System: %p\n", p);
-	*/
-	ft_printf("Mine: %x\n", num_hex);
-	printf("System: %x\n", num_hex);
-	//printf("System: %x\n", num_hex); 
+	ft_printf("Mine ptr: %p\n", p);
+	printf("System ptr: %p\n", p);
 }
