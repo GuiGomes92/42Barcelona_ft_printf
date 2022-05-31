@@ -6,13 +6,14 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/05/31 21:17:34 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/05/31 21:55:24 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	a.out
 
-SRCS	=	ft_printf.c
+SRCS	=	ft_printf.c ft_printf_utils.c ft_put_hex.c ft_put_ptr.c ft_put_unsigned.c
+SRC_DIR	=	src/
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 RM      =   rm -f
