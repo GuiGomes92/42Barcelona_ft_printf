@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/28 18:21:48 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:18:14 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ static int ft_put_unsigned(unsigned int i)
 {
 	char c;
 
-	//if (i >= 0 && i <= 9)
-	//	write(1, &i, 1);
-	//	Put numbers less than 10;
 	if (i >= 10)
 	{
 		ft_putint(i / 10);
@@ -57,7 +54,6 @@ static int ft_put_unsigned(unsigned int i)
 
 static void ft_put_nb(uintptr_t ptr)
 {
-	// Putting numbers backwords: fix it.
 	uintptr_t temp;
 	while (ptr > 0)
 	{
@@ -68,22 +64,6 @@ static void ft_put_nb(uintptr_t ptr)
 			ft_putchar_fd((temp - 10 + 'a'), 1);
 		ptr = ptr / 16;
 	}
-	/*
-	if (ptr >= 16)
-	{
-		ft_put_nb(ptr / 16);
-		ft_put_nb(ptr % 16);
-	}
-	else 
-	{
-		if (ptr <= 9)
-			ft_putchar_fd((ptr + '0'), 1);
-		else
-		{
-			ft_putchar_fd((ptr - 10 + 'a'), 1);
-		}
-	}
-	*/
 }
 
 static int ft_put_ptr(unsigned long long ptr)
@@ -95,30 +75,46 @@ static int ft_put_ptr(unsigned long long ptr)
 
 static int ft_put_int_hex(int i, char type)
 {
-	// Divide by 16
-	// mod the number 
-	// if < 9 print number
-	// if >= 10 print number plus a
-	int	mod;
+	int		mod;
+	int		len;
+	int		j;
+	char	*str;
+	const char	hex[] = "0123456789abcdef";
+		
+	j = i;
+	len = 0;
+	while (j > 0)
+	{
+		j = j / 16;
+		len++;
+	}
+	str = malloc(len + 1 * sizeof(char));
+	str[len] = '\0';
 	while (i > 0)
 	{
+		len--;
 		mod = i % 16;
-
-		if (mod <= 9)
-			ft_putchar_fd((mod + '0'), 1);
-		else
-		{
-			ft_putchar_fd((mod - 10 + 'a'), 1);	
-		}
+		str[len] = hex[mod];
 		i = i / 16;
 	}
-	printf("%c", type);
-	/*
+	j = 0; 
 	if (type == 'x')
-		printf("x %i", i);
-	if (type == 'X')
-		printf("X %i", i);
-	*/
+	{
+		while (str[j] != '\0')
+		{
+			str[j] = ft_tolower(str[j]);
+			j++;
+		}
+	}
+	else if (type == 'X')
+	{
+		while (str[j] != '\0')
+        {
+            str[j] = ft_toupper(str[j]);
+			j++;
+        }
+	}
+	ft_putstr_fd(str, 1);
 	return (0);
 }
 
@@ -185,9 +181,6 @@ int main(void)
 	printf("System: %p\n", p);
 	*/
 	ft_printf("Mine: %x\n", num_hex);
-	printf("System: %x\n", num_hex); 
+	printf("System: %x\n", num_hex);
+	//printf("System: %x\n", num_hex); 
 }
-/*
-• %x Prints a number in hexadecimal (base 16) lowercase format.
-• %X Prints a number in hexadecimal (base 16) uppercase format.
-*/
