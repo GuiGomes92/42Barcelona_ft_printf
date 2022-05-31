@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:16:04 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 20:19:44 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:40:44 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ static int ft_convert_ptr(uintptr_t ptr)
 }                        
                           
 static int ft_put_ptr(unsigned long long ptr)
-{                        
-	write(1, "0x", 2);   
-	ft_convert_ptr(ptr);    
-	return (0);          
+{
+	int len;
+	
+	len = 0;	
+	len += write(1, "0x", 2);   
+	len += ft_convert_ptr(ptr);    
+	return (len);          
 } 
