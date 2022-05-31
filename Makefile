@@ -6,7 +6,7 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/05/28 18:05:58 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/05/31 21:17:34 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 RM      =   rm -f
 LIBFT 	= 	libft
-HEADER	=	libftprintf.h
+HEADER	=	ft_libft.h
 OBJS	=	$(SRCS:%.c=%.o)
 %.o: %.c
 		${CC} ${CFLAGS} -I./ -c $< -o $@
