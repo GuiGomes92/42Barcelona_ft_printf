@@ -6,11 +6,14 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 20:29:12 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:25:24 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int get_num_len(int num)
+#include "../include/ft_printf.h"
+#include "../include/libft.h"
+
+int get_num_len(int num)
 {
 	int len;
 	
@@ -23,7 +26,7 @@ static int get_num_len(int num)
 	return (len);
 }  
 
-static char *ft_convert_hex(int num)
+char *ft_convert_hex(int num)
 {
 	int     mod;
 	int     j;
@@ -45,7 +48,7 @@ static char *ft_convert_hex(int num)
 return (str);
 }
 
-static int ft_put_int_hex(int i, char type)
+int ft_put_int_hex(int i, char type)
 {   
 	int     j;
 	int     len;                                                        

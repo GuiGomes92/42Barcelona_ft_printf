@@ -6,11 +6,14 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:11:19 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 20:13:14 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:27:04 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int ft_put_unsigned(unsigned int i)
+#include "../include/ft_printf.h"
+#include "../include/libft.h"
+
+int ft_put_unsigned(unsigned int i)
 {            
 	char c;
 

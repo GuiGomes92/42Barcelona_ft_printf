@@ -6,16 +6,19 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:06:35 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 20:09:53 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:21:45 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static void ft_putchar(int c)
+#include "../include/ft_printf.h"
+#include "../include/libft.h"
+
+void ft_putchar(int c)
 {
 	write(1, &c, 1);
 }
 
-static void ft_putstr(char *str)
+void ft_putstr(char *str)
 {
 	int i;
 
@@ -27,7 +30,7 @@ static void ft_putstr(char *str)
 	}
 }
 
-static int ft_putint(int i)
+int ft_putint(int i)
 {
 	ft_putnbr_fd(i, 1);
 	return (0);

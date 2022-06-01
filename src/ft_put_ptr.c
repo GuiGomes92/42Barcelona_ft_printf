@@ -6,11 +6,14 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:16:04 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 20:45:40 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:26:26 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int ft_convert_ptr(uintptr_t ptr)
+#include "../include/ft_printf.h"
+#include "../include/libft.h" 
+
+int ft_convert_ptr(uintptr_t ptr)
 {                        
 	char        *str;    
 	int         len;     
@@ -40,7 +43,7 @@ static int ft_convert_ptr(uintptr_t ptr)
 	return (len);        
 }                        
                           
-static int ft_put_ptr(unsigned long long ptr)
+int ft_put_ptr(unsigned long long ptr)
 {
 	int len;
 	

@@ -6,13 +6,13 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/05/31 20:59:49 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:28:25 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_check_type(va_list arg, char type)
+int ft_check_type(va_list arg, char type)
 {
 	if (type == 'c')
 		ft_putchar(va_arg(arg, int));
@@ -51,14 +51,4 @@ int ft_printf(const char *str, ...)
 	}
 	va_end(arg);
 	return (0);
-}
-
-int main(void)
-{
-	int	i = 128l;
-	void	*p;
-
-	p = &i;
-	ft_printf("Mine ptr: %p\n", p);
-	printf("System ptr: %p\n", p);
 }

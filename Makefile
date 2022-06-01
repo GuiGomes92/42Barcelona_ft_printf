@@ -6,38 +6,70 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/05/31 21:55:24 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/06/01 12:09:22 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	a.out
+NAME	=	libftprintf.a
 
-SRCS	=	ft_printf.c ft_printf_utils.c ft_put_hex.c ft_put_ptr.c ft_put_unsigned.c
-SRC_DIR	=	src/
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+INCLUDE	=	include
+LIBFT   =   libft
+SRC_DIR =   src/
+OBJ_DIR	=	obj/
+CC      =   gcc
+CFLAGS  =   -g -Wall -Wextra -Werror -I
 RM      =   rm -f
-LIBFT 	= 	libft
-HEADER	=	ft_libft.h
-OBJS	=	$(SRCS:%.c=%.o)
-%.o: %.c
-		${CC} ${CFLAGS} -I./ -c $< -o $@
+AR		=	ar rcs
+
+# Colors
+
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
+
+SRC_FILES	=	ft_printf ft_printf_utils ft_put_hex ft_put_ptr ft_put_unsigned
+
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+OBJF		=	.cache_exists
 
 all: ${NAME}
-${NAME}:${OBJS} ${HEADER}
+${NAME}:${OBJ}
 	make -C ${LIBFT}
-	@${CC} ${OBJS} ${LIBFT}/${LIBFT}.a -o ${NAME}
-#	editar linea de arriba al entregar sin CC ni flags
-#	ar -crs ${NAME} ${OBJS}
-#	quitar comentario al entregar
+	cp libft/libft.a .
+	mv libft.a ${NAME}
+	${AR} ${NAME} ${OBJ}
+	@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+${OBJF}:
+	@mkdir -p ${OBJ_DIR}
 
 clean:
-	${RM} ${OBJS}
-	${RM} ${LIBFT}/%.o
+	@$(RM) -rf $(OBJ_DIR)
+	@make clean -C $(LIBFT)
+	@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
 
 fclean:	clean
-	${RM} ${NAME}
+	@$(RM) -f $(NAME)
+	@$(RM) -f $(LIBFT)/libft.a
+	@echo "$(CYAN)ft_printf executable files cleaned!$(DEF_COLOR)"
+	@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
-re:			fclean all
+re:	fclean all
+	@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf!$(DEF_COLOR)"
+
+norm:
+	@norminette ${SRC} ${INCLUDE} ${LIBFT} | grep -v Norme -B1 || true;
 
 .PHONY: fclean, all, clean, re
