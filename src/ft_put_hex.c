@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/01 12:25:24 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:09:01 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int ft_put_int_hex(int i, char type)
 		j++;
 	}
 	ft_putstr_fd(str, 1);
-	return (0);
+	free(str);
+	return (len);
 }  

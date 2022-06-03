@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:16:04 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/01 12:26:26 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:03:40 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int ft_convert_ptr(uintptr_t ptr)
 		num = num / 16;  
 	}                    
 	ft_putstr_fd(str, 1);
+	free(str);
 	//Len is 0 now, make a copy at the beginning
 	return (len);        
 }                        
