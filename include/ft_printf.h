@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:09:42 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/01 12:23:43 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:27:34 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 int ft_printf(const char *str, ...);
 int ft_check_type(va_list arg, char type);
-void ft_putchar(int c);
-void ft_putstr(char *str);
+int ft_putchar(int c);
+int ft_putstr(char *str);
 int ft_putint(int i);
 int get_num_len(int num);
 char *ft_convert_hex(int num);

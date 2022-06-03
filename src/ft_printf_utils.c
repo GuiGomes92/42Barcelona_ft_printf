@@ -6,19 +6,20 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:06:35 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/03 18:03:03 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:46:54 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include "../include/libft.h"
 
-void ft_putchar(int c)
+int	ft_putchar(int c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
-void ft_putstr(char *str)
+int ft_putstr(char *str)
 {
 	int i;
 
@@ -28,6 +29,7 @@ void ft_putstr(char *str)
 		ft_putchar(str[i]);
 		i++;
 	}
+	return (i);
 }
 
 int ft_putint(int i)

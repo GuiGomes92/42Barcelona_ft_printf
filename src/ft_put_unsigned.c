@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:11:19 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/03 18:03:50 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:46:07 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 int ft_put_unsigned(unsigned int i)
 {            
-	char c;
-
+	char	c;
+	int		len;
+	
+	len = 0;
 	if (i >= 10)
 	{           
 		ft_putint(i / 10);
@@ -25,7 +27,7 @@ int ft_put_unsigned(unsigned int i)
 	else        
 	{           
 		c = i + '0';    
-		write(1, &c, 1);
+		len += write(1, &c, 1);
 	}
-	return (0);
+	return (len);
 }  
