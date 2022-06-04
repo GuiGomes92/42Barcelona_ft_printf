@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:06:35 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/03 18:46:54 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/04 18:06:11 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ int ft_putstr(char *str)
 
 int ft_putint(int i)
 {
+	int j;
+	int len;
+
+	j = i;
+	len = 0;
+	while (j > 0)
+	{
+		j = j / 10;
+		len++;
+	}
 	ft_putnbr_fd(i, 1);
-	return (0);
+	return (len);
 }
