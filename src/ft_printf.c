@@ -6,15 +6,15 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/04 18:06:06 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:40:02 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_check_type(va_list arg, char type)
+int	ft_check_type(va_list arg, char type)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (type == 'c')
@@ -34,9 +34,9 @@ int ft_check_type(va_list arg, char type)
 	return (len);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list arg;
+	va_list	arg;
 	int		i;
 	int		len;
 
@@ -45,7 +45,7 @@ int ft_printf(const char *str, ...)
 	va_start(arg, str);
 	while (str[i] != '\0')
 	{
-		if(str[i] == '%')
+		if (str[i] == '%')
 		{
 			len += ft_check_type(arg, str[i + 1]);
 			i++;

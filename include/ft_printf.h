@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:09:42 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 18:30:04 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:46:10 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_convert_ptr(uintptr_t ptr);
 int		ft_put_ptr(unsigned long long ptr);
 int		ft_put_unsigned(unsigned int i);
 int		get_len(unsigned int i);
-char	*ft_uitoa(unsigned num, int len);
+char	*ft_uitoa(unsigned int num, int len);
 int		ft_put_unsigned(unsigned int i);
+
 #endif

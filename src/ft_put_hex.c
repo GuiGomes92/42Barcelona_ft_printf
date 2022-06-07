@@ -6,17 +6,17 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 18:20:44 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:43:54 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include "../include/libft.h"
 
-int get_num_len(unsigned int num)
+int	get_num_len(unsigned int num)
 {
-	unsigned int len;
-	
+	unsigned int	len;
+
 	len = 0;
 	while (num != 0)
 	{
@@ -24,9 +24,9 @@ int get_num_len(unsigned int num)
 		num = num / 16;
 	}
 	return (len);
-}  
+}
 
-void ft_convert_hex(int num, char type)
+void	ft_convert_hex(int num, char type)
 {
 	if (num <= 9)
 		ft_putchar_fd((num + '0'), 1);
@@ -39,14 +39,14 @@ void ft_convert_hex(int num, char type)
 	}
 }
 
-int ft_put_int_hex(unsigned int i, char type)
+int	ft_put_int_hex(unsigned int i, char type)
 {
 	if (i == 0)
 	{
 		write(1, "0", 1);
 		return (1);
 	}
-	else 
+	else
 	{
 		if (i >= 16)
 		{
@@ -57,4 +57,4 @@ int ft_put_int_hex(unsigned int i, char type)
 			ft_convert_hex(i, type);
 	}
 	return (get_num_len(i));
-}  
+}

@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:11:19 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 17:32:17 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:48:06 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	get_len(unsigned int i)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (i != 0)
@@ -26,9 +26,9 @@ int	get_len(unsigned int i)
 	return (len);
 }
 
-char	*ft_uitoa(unsigned num, int len)
+char	*ft_uitoa(unsigned int num, int len)
 {
-	char    *ptr;
+	char	*ptr;
 	int		i;
 
 	ptr = (char *)malloc((len + 1) * sizeof(char));
@@ -45,16 +45,16 @@ char	*ft_uitoa(unsigned num, int len)
 	return (ptr);
 }
 
-int ft_put_unsigned(unsigned int i)
-{            
-	int		len;     
+int	ft_put_unsigned(unsigned int i)
+{
+	int		len;
 	char	*str;
-	
+
 	if (i == 0)
 	{
 		len = write(1, "0", 1);
 	}
-	else 
+	else
 	{
 		len = get_len(i);
 		str = ft_uitoa(i, len);
@@ -62,4 +62,4 @@ int ft_put_unsigned(unsigned int i)
 		free (str);
 	}
 	return (len);
-}  
+}
