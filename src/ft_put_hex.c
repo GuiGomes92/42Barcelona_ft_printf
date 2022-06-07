@@ -6,16 +6,16 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 17:41:01 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:20:44 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include "../include/libft.h"
 
-int get_num_len(int num)
+int get_num_len(unsigned int num)
 {
-	int len;
+	unsigned int len;
 	
 	len = 0;
 	while (num != 0)
@@ -26,47 +26,35 @@ int get_num_len(int num)
 	return (len);
 }  
 
-char *ft_convert_hex(int num)
+void ft_convert_hex(int num, char type)
 {
-	int     mod;
-	int     j;
-	int     len;
-	char    *str;
-	const char  hex[] = "0123456789abcdef";
-
-	j = num;
-	len = get_num_len(num);
-	str = malloc(len + 1 * sizeof(char));
-	str[len] = '\0';
-	while (j != 0)
-	{
-		len--;
-		mod = j % 16;
-		str[len] = hex[mod];
-		j = j / 16;
-	}
-	return (str);
-}
-
-int ft_put_int_hex(int i, char type)
-{   
-	int     j;
-	int     len;                                                        
-	char    *str;
-
-	j = 0;
-	len = get_num_len(i);
-	str = ft_convert_hex(i);
-	while (str[j] != '\0')
+	if (num <= 9)
+		ft_putchar_fd((num + '0'), 1);
+	else
 	{
 		if (type == 'x')
-			str[j] = ft_tolower(str[j]);
+			ft_putchar_fd((num - 10 + 'a'), 1);
 		else if (type == 'X')
-			str[j] = ft_toupper(str[j]);
-		j++;
+			ft_putchar_fd((num - 10 + 'A'), 1);
 	}
-	ft_putstr_fd(str, 1);
-	len = ft_strlen(str);
-	free(str);
-	return (len);
+}
+
+int ft_put_int_hex(unsigned int i, char type)
+{
+	if (i == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	else 
+	{
+		if (i >= 16)
+		{
+			ft_put_int_hex((i / 16), type);
+			ft_put_int_hex((i % 16), type);
+		}
+		else
+			ft_convert_hex(i, type);
+	}
+	return (get_num_len(i));
 }  
