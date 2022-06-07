@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:09:42 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/03 18:27:34 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:25:01 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int ft_printf(const char *str, ...);
-int ft_check_type(va_list arg, char type);
-int ft_putchar(int c);
-int ft_putstr(char *str);
-int ft_putint(int i);
-int get_num_len(int num);
-char *ft_convert_hex(int num);
-int ft_put_int_hex(int i, char type);
-int ft_convert_ptr(uintptr_t ptr);
-int ft_put_ptr(unsigned long long ptr);
-int ft_put_unsigned(unsigned int i);
-
+int		ft_printf(const char *str, ...);
+int		ft_check_type(va_list arg, char type);
+int		ft_putchar(int c);
+int		ft_putstr(char *str);
+int		ft_putint(int i);
+int		get_num_len(int num);
+char	*ft_convert_hex(int num);
+int		ft_put_int_hex(int i, char type);
+int		ft_convert_ptr(uintptr_t ptr);
+int		ft_put_ptr(unsigned long long ptr);
+int		ft_put_unsigned(unsigned int i);
+int		get_len(unsigned int i);
+char	*ft_uitoa(unsigned num, int len);
+int		ft_put_unsigned(unsigned int i);
 #endif

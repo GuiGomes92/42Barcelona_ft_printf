@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/04 18:06:08 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:41:01 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int get_num_len(int num)
 	int len;
 	
 	len = 0;
-	while (num > 0)
+	while (num != 0)
 	{
-		num = num / 16;
 		len++;
+		num = num / 16;
 	}
 	return (len);
 }  
@@ -38,14 +38,14 @@ char *ft_convert_hex(int num)
 	len = get_num_len(num);
 	str = malloc(len + 1 * sizeof(char));
 	str[len] = '\0';
-	while (j > 0)
+	while (j != 0)
 	{
 		len--;
 		mod = j % 16;
 		str[len] = hex[mod];
 		j = j / 16;
 	}
-return (str);
+	return (str);
 }
 
 int ft_put_int_hex(int i, char type)
