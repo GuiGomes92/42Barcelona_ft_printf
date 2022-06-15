@@ -6,7 +6,7 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/06/10 18:29:12 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/06/15 15:35:57 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,13 @@ OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJF		=	.cache_exists
 
-all: ${NAME}
-${NAME}:${OBJ}
-	make -C ${LIBFT}
+all:	makelibs 
+		@${MAKE} ${NAME}
+
+makelibs:
+			@$(MAKE) -C $(LIBFT)
+
+${NAME}:${OBJ} ${LIBFT}/libft.a ${INCLUDE}/ft_printf.h
 	cp libft/libft.a .
 	mv libft.a ${NAME}
 	${AR} ${NAME} ${OBJ}
