@@ -6,43 +6,40 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:16:04 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 18:53:18 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:01:43 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include "../include/libft.h" 
 
-int	ft_convert_ptr(uintptr_t ptr)
+int	get_ptr_len(unsigned long long ptr)
 {
-	char		*str;
-	int			len;
-	int			len2;
-	uintptr_t	num;
-	int			mod;
-	const char	hex[] = "0123456789abcdef";
+	int	len;
 
-	num = ptr;
 	len = 0;
-	while (num > 0)
+	while (ptr != 0)
 	{
-		num = num / 16;
 		len++;
+		ptr = ptr / 16;
 	}
-	len2 = len;
-	str = malloc(len + 1 * sizeof(char));
-	str[len] = '\0';
-	num = ptr;
-	while (num > 0)
+	return (len);
+}
+
+void	ft_puthex(unsigned long long ptr)
+{
+	if (ptr >= 16)
 	{
-		len--;
-		mod = num % 16;
-		str[len] = hex[mod];
-		num = num / 16;
+		ft_puthex(ptr / 16);
+		ft_puthex(ptr % 16);
 	}
-	ft_putstr_fd(str, 1);
-	free(str);
-	return (len2);
+	else
+	{
+		if (ptr <= 9)
+			ft_putchar_fd((ptr + '0'), 1);
+		else
+			ft_putchar_fd((ptr - 10 + 'a'), 1);
+	}
 }
 
 int	ft_put_ptr(unsigned long long ptr)
@@ -52,9 +49,11 @@ int	ft_put_ptr(unsigned long long ptr)
 	len = 0;
 	len += write(1, "0x", 2);
 	if (ptr == 0)
-	{
 		len += write(1, "0", 1);
+	else
+	{
+		ft_puthex(ptr);
+		len += get_ptr_len(ptr);
 	}
-	len += ft_convert_ptr(ptr);
 	return (len);
 }

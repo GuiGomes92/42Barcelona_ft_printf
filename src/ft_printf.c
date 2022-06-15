@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 18:40:02 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:25:19 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_check_type(va_list arg, char type)
 	else if (type == 'p')
 		len += ft_put_ptr(va_arg(arg, unsigned long long));
 	else if (type == 'x' || type == 'X')
-		len += ft_put_int_hex(va_arg(arg, int), type);
+		len += ft_put_int_hex(va_arg(arg, unsigned int), type);
 	return (len);
 }
 
