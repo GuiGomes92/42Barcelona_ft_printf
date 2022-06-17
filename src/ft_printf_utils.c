@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:06:35 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/07 18:40:34 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:19:16 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 int	ft_putchar(int c)
 {
-	write(1, &c, 1);
+	if (write(1, &c, 1) != 1)
+		return (-1);
 	return (1);
 }
 
@@ -26,12 +27,14 @@ int	ft_putstr(char *str)
 	i = 0;
 	if (str == NULL)
 	{
-		ft_putstr("(null)");
+		if (write(1, "(null)", 6) != 6)
+			return (-1);
 		return (6);
 	}
 	while (str[i] != '\0')
 	{
-		ft_putchar(str[i]);
+		if(ft_putchar(str[i]) != 1)
+			return (-1);
 		i++;
 	}
 	return (i);
