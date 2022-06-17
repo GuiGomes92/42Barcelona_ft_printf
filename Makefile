@@ -6,7 +6,7 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/06/15 15:35:57 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/06/17 11:40:22 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_FILES	=	ft_printf ft_printf_utils ft_put_hex ft_put_ptr ft_put_unsigned
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
-
+DEPS		=	$(addprefix $(OBJ_DIR), $(addsuffix .d, $(SRC_FILES)))
 OBJF		=	.cache_exists
 
 all:	makelibs 
@@ -46,6 +46,7 @@ all:	makelibs
 makelibs:
 			@$(MAKE) -C $(LIBFT)
 
+-include ${DEPS}
 ${NAME}:${OBJ} ${LIBFT}/libft.a ${INCLUDE}/ft_printf.h
 	cp libft/libft.a .
 	mv libft.a ${NAME}
