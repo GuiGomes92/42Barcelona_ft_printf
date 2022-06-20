@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/20 18:31:46 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:42:16 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ int	get_num_len(unsigned int num)
 
 int	ft_convert_hex(int num, char type)
 {
-	int	c;
+	int		c;
+	char	x;
 
+	if (type == 'x')
+		x = 'a';
+	else if (type == 'X')
+		x = 'A';
 	if (num <= 9)
 	{
 		c = num + '0';
@@ -38,18 +43,9 @@ int	ft_convert_hex(int num, char type)
 	}
 	else
 	{
-		if (type == 'x')
-		{
-			c = (num - 10) + 'a';
-			if (write(1, &c, 1) != 1)
-				return (-1);
-		}
-		else if (type == 'X')
-		{
-			c = (num - 10) + 'A';
-			if (write(1, &c, 1) != 1)
-				return (-1);
-		}
+		c = (num - 10) + x;
+		if (write(1, &c, 1) != 1)
+			return (-1);
 	}
 	return (0);
 }
