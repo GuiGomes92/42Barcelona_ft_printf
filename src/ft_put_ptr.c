@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:16:04 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/17 17:21:25 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:21:47 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int	get_ptr_len(unsigned long long ptr)
 
 int	ft_puthex(unsigned long long ptr)
 {
-	int	ascii = 0;
+	int	ascii;
 
+	ascii = 0;
 	if (ptr >= 16)
 	{
 		ft_puthex(ptr / 16);
@@ -58,9 +59,17 @@ int	ft_put_ptr(unsigned long long ptr)
 	int	len;
 
 	len = 0;
-	len += write(1, "0x", 2);
+	if (write(1, "0x", 2) != 2)
+		return (-1);
+	else
+		len += 2;
 	if (ptr == 0)
-		len += write(1, "0", 1);
+	{
+		if (write(1, "0", 1) != 1)
+			return (-1);
+		else
+			len += 1;
+	}
 	else
 	{
 		ft_puthex(ptr);

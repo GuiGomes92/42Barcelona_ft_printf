@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:11:19 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/15 15:01:04 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:19:05 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,24 @@ int	ft_put_unsigned(unsigned int i)
 	int		len;
 	char	*str;
 
+	len = 0;
 	if (i == 0)
 	{
-		len = write(1, "0", 1);
+		if (write(1, "0", 1) != 1)
+			return (-1);
+		return (1);
 	}
 	else
 	{
 		len = get_len(i);
 		str = ft_uitoa(i, len);
-		ft_putstr_fd(str, 1);
+		if (!str)
+			return (-1);
+		if (ft_putstr(str) == -1)
+		{
+			free (str);
+			return (-1);
+		}
 		free (str);
 	}
 	return (len);

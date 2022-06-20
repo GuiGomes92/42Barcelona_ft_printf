@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:21:51 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/10 18:19:35 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:31:46 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,40 @@ int	get_num_len(unsigned int num)
 	return (len);
 }
 
-void	ft_convert_hex(int num, char type)
+int	ft_convert_hex(int num, char type)
 {
+	int	c;
+
 	if (num <= 9)
-		ft_putchar_fd((num + '0'), 1);
+	{
+		c = num + '0';
+		if (write(1, &c, 1) != 1)
+			return (-1);
+	}
 	else
 	{
 		if (type == 'x')
-			ft_putchar_fd((num - 10 + 'a'), 1);
+		{
+			c = (num - 10) + 'a';
+			if (write(1, &c, 1) != 1)
+				return (-1);
+		}
 		else if (type == 'X')
-			ft_putchar_fd((num - 10 + 'A'), 1);
+		{
+			c = (num - 10) + 'A';
+			if (write(1, &c, 1) != 1)
+				return (-1);
+		}
 	}
+	return (0);
 }
 
 int	ft_put_int_hex(unsigned int i, char type)
 {
 	if (i == 0)
 	{
-		write(1, "0", 1);
+		if (write(1, "0", 1) != 1)
+			return (-1);
 		return (1);
 	}
 	else
@@ -54,7 +70,10 @@ int	ft_put_int_hex(unsigned int i, char type)
 			ft_put_int_hex((i % 16), type);
 		}
 		else
-			ft_convert_hex(i, type);
+		{
+			if (ft_convert_hex(i, type) == -1)
+				return (-1);
+		}
 	}
 	return (get_num_len(i));
 }

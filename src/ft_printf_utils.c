@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:06:35 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/17 17:19:16 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:46:48 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_putstr(char *str)
 	}
 	while (str[i] != '\0')
 	{
-		if(ft_putchar(str[i]) != 1)
+		if (ft_putchar(str[i]) != 1)
 			return (-1);
 		i++;
 	}
@@ -42,11 +42,35 @@ int	ft_putstr(char *str)
 
 int	ft_putint(int i)
 {
-	char	*num;
-	int		len;
+	int	len;
 
-	num = ft_itoa(i);
-	len = ft_putstr(num);
-	free(num);
+	len = 0;
+	if (i == -2147483648)
+	{
+		if (write(1, "-2147483648", 11) != 11)
+			return (-1);
+		return (11);
+	}
+	if (i < 0)
+	{
+		if (write(1, "-", 1) != 1)
+			return (-1);
+		i = i * (-1);
+		len++;
+	}
+	if (i >= 10)
+	{
+		len += ft_putint(i / 10);
+		if (len == -1)
+			return (-1);
+		i = i % 10;
+	}
+	if (i < 10)
+	{
+		i = (i + '0');
+		if (write(1, &i ,1) != 1)
+			return (-1);
+		len++;
+	}
 	return (len);
 }
