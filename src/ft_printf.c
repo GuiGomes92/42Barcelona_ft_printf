@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:27:54 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/06/21 12:57:04 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:52:55 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,13 @@ int	ft_check_type(va_list arg, char type)
 	return (0);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_protect_func(const char *str, va_list arg, int len)
 {
-	va_list	arg;
-	int		i;
-	int		len;
-	int		res;
+	int	i;
+	int	res;
 
 	res = 0;
 	i = 0;
-	len = 0;
-	va_start(arg, str);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
@@ -60,6 +56,17 @@ int	ft_printf(const char *str, ...)
 		}
 		i++;
 	}
+	return (len);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	arg;
+	int		len;
+
+	len = 0;
+	va_start(arg, str);
+	len = ft_protect_func(str, arg, len);
 	va_end(arg);
 	return (len);
 }
