@@ -6,7 +6,7 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/06/23 15:55:49 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/06/23 17:55:28 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT   =   libft
 SRC_DIR =   src/
 OBJ_DIR	=	obj/
 CC      =   gcc
-CFLAGS  =   -g -Wall -Wextra -Werror -I
+CFLAGS  =   -g -Wall -Wextra -Werror -MMD -I
 RM      =   rm -f
 AR		=	ar rcs
 
