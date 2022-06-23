@@ -6,7 +6,7 @@
 #    By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 15:17:34 by gbraga-g          #+#    #+#              #
-#    Updated: 2022/06/17 11:40:22 by gbraga-g         ###   ########.fr        #
+#    Updated: 2022/06/23 15:52:59 by gbraga-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ makelibs:
 			@$(MAKE) -C $(LIBFT)
 
 -include ${DEPS}
-${NAME}:${OBJ} ${LIBFT}/libft.a ${INCLUDE}/ft_printf.h
+${NAME}:${OBJ} ${INCLUDE}/libft.h ${INCLUDE}/ft_printf.h ${LIBFT}/libft.h
 	cp libft/libft.a .
 	mv libft.a ${NAME}
 	${AR} ${NAME} ${OBJ}
