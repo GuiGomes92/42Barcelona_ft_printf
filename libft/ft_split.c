@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_free(char **split, int word)
+static int ft_free(char **split, int word)
 {
 	while (word > 0)
 	{
@@ -23,19 +23,16 @@ static int	ft_free(char **split, int word)
 	return (-1);
 }
 
-static int	ft_is_separator(char c, char sep)
+static int ft_is_separator(char c, char sep)
 {
-	int	i;
-
-	i = 0;
 	if (c == sep || c == '\0')
 		return (1);
 	return (0);
 }
 
-static void	write_word(char *list, char *s, char c)
+static void write_word(char *list, char *s, char c)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (ft_is_separator(s[i], c) == 0)
@@ -46,11 +43,11 @@ static void	write_word(char *list, char *s, char c)
 	list[i] = '\0';
 }
 
-static int	write_split(char **list, char *s, char c)
+static int write_split(char **list, char *s, char c)
 {
-	int	i;
-	int	j;
-	int	word;
+	int i;
+	int j;
+	int word;
 
 	word = 0;
 	i = 0;
@@ -74,12 +71,12 @@ static int	write_split(char **list, char *s, char c)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
-	char	**list;
-	int		words;
-	int		word;
-	int		i;
+	char **list;
+	int words;
+	int word;
+	int i;
 
 	word = 0;
 	i = 0;
