@@ -23,6 +23,7 @@ int		ft_printf(const char *str, ...);
 int		ft_check_type(va_list arg, char type);
 int		ft_protect_func(const char *str, va_list arg, int len);
 int		ft_putchar(int c);
+void	ft_putchar_fd(char c, int fd);
 int		ft_putstr(char *str);
 int		ft_putint(int j);
 int		get_num_len(unsigned int num);
