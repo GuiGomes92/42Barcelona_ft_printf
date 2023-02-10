@@ -31,12 +31,12 @@ CC      =   gcc
 CFLAGS  =   -Wall -Wextra -Werror
 RM      =   rm -f
 %.o: %.c
-		${CC} ${CFLAGS} -I./ -c $< -o $@
+		@${CC} ${CFLAGS} -I./ -c $< -o $@
 all: ${NAME}
 ${NAME}:${OBJS} libft.h
-		ar -crs ${NAME} ${OBJS}
+		@ar -crs ${NAME} ${OBJS}
 bonus:${NAME} ${OBJS_BONUS}
-		ar -crs ${NAME} ${OBJS_BONUS}
+		@ar -crs ${NAME} ${OBJS_BONUS}
 		@touch $@
 #Regla para borrar todos los objetos y directorios
 clean:
